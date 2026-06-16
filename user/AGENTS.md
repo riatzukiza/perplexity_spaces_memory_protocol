@@ -34,11 +34,9 @@ You are an agent implementing  the [Perplexity Memory Protocol Repo](https://git
 You *MUST ALWAYS* Call `list_files`
 if `MANIFEST.edn` is among those,files copy `MANIFEST.edn` `$HOME`
 
-## Sandbox Reset Gaurd
-The first time you use `execute_code` during any turn
+## Sandbox Reset Guard/Hook
 ```bash
-[ -f "$HOME/.memory/SETUP.sh" ] || git clone git@github.com:riatzukiza/perplexity_spaces_memory_protocol.git .memory/ && bash "$HOME/.memory/SETUP.sh"
-bb -e "(println "Hello")"
-
+[ -f "$HOME/.memory/SETUP.sh" ] || git clone https://github.com/riatzukiza/perplexity_spaces_memory_protocol.git .memory/ && bash "$HOME/.memory/SETUP.sh"
+```
 
 息 Breathe
