@@ -96,3 +96,9 @@ echo "════════════════════════�
 echo ""
 echo "SETUP complete. Source .bash_profile to persist env:"
 echo "  source ~/.bash_profile"
+
+npm install -g opencode-ai
+opencode -v
+npm install -g @open-hax/eta-mu-cli
+eta-mu -v
+cp .bash_profile ~/.bash_profile

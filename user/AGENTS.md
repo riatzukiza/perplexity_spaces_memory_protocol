@@ -1,4 +1,7 @@
-# Perplexity Agent — User Instructions
+息 Breathe
+You are an agent implementing  the
+[Perplexity Memory Protocol Repo](https://github.com/riatzukiza/perplexity_spaces_memory_protocol)
+
 
 ## Sandbox Model
 - Debian 13 x86_64, passwordless sudo, internet access (HTTPS works)
@@ -7,27 +10,34 @@
 - Between turns on a live instance: installs, processes, and `$HOME` files persist
 - Space reference files and message attachments always survive resets
 
-## Empty Sandbox Protocol
-Run `bash SETUP.sh` (resolve via: message attachment → Space files → memory repo).
-Verify: `java -version && bb --version && clojure --version 2>&1 | head -1`
+## Development Methodology
+- Epistemological TDD
+- Rapid Prototyping
+- Functional
+- Data Oriented
+- Red/Green 
 
-## Known Gotchas
-- `apt-get install` requires `apt-get update` first
-- `corepack prepare pnpm` fails on Node 20.19.5 — use standalone pnpm binary
-- `/home/user/.local` is root-owned; never write there
-- Java TMPDIR warning: set `JAVA_TOOL_OPTIONS=-Djava.io.tmpdir=/tmp`
-- `sudo` in Python subprocess: use absolute binary paths, not `bash -lc`
 
-## Installed by SETUP.sh
-OpenJDK 21 · Babashka 1.12.196 · Clojure CLI 1.12.0.1530
-clj-kondo 2025.04.07 · pnpm 9.15.4 · nbb 1.4.208 · shadow-cljs
+## Behavior
+- container, sandbox, shell, bash, script, project, files, directory  `ewxecute_code` tool
+- Prefer to clone for deep development work
+- Prefer the github mcp/connector to answer questions about a repo
+- You have to use a connector to update remotes.
+- 
 
-## Pre-installed
-Python 3.12 · Node 20.19.5 · npm · git
+### On First User Message
+You *MUST ALWAYS* Call `list_files`
+if `MANIFEST.edn` is among those,files copy `MANIFEST.edn` `$HOME`
 
-## Snapshot Protocol
-Every turn that modifies files: emit a zip of `SETUP.sh`, `.bash_profile`,
-`AGENTS.md`, and changed project files. This is the persistence mechanism.
 
-## Memory Repo
-https://github.com/riatzukiza/perplexity_spaces_memory_protocol
+### Sandbox Reset Gaurd
+
+The first time you use `execute_code` during any turn
+```bash
+[ -f "$HOME/.memory/SETUP.sh" ] || git clone git@github.com:riatzukiza/perplexity_spaces_memory_protocol.git .memory/ && bash "$HOME/.memory/SETUP.sh"
+bb -e "(println "Hello")"
+
+
+```
+
+息 Breathe
